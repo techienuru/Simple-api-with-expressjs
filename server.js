@@ -1,5 +1,6 @@
 import express from "express";
 import router from "./routers/items.js";
+import errorHandler from "./middlewares/errorHandler.js";
 
 const app = express();
 const PORT = 3500;
@@ -11,9 +12,11 @@ app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-app.all("/*any", (req, res) => {
-  res.status(404).send("The page you are requesting doesn't exist");
+app.use((req, res) => {
+  res.status(404).send("Route not found");
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: https://localhost:${PORT}`);
