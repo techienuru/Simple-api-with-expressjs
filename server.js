@@ -4,6 +4,7 @@ import router from "./routers/items.js";
 const app = express();
 const PORT = 3500;
 
+app.use(express.json());
 app.use("/items", router);
 
 app.get("/", (req, res) => {
