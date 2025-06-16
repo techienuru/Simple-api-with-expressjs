@@ -93,8 +93,11 @@ This project is a simple REST API built using Node.js and Express.js. It demonst
 Simple-api-with-expressjs/
 ├── controllers/
 │   └── items.js
+├── routers/
+│   └── items.js
 ├── server.js
 ├── package.json
+├── README.md
 ```
 
 ## 📧 Author
