@@ -23,14 +23,16 @@ export const getItem = (req, res) => {
 
 export const createItem = (req, res) => {
   try {
-    const incomingItem = req.body;
-    if (incomingItem.name && incomingItem.description && !incomingItem.id) {
-      const newItem = { id: uuidv4(), ...req.body };
+    const { name, description } = req.body;
+    if (name && description) {
+      const newItem = { id: uuidv4(), name, description };
       items.push(newItem);
 
-      res.send("Item added successfully");
+      res.status(201).send("Item added successfully");
     } else {
-      res.status(400).send("Only name and description properties are allowed");
+      res
+        .status(400)
+        .send("Missing required fields: name and description are all required");
     }
   } catch (err) {
     console.log(err.message);
@@ -40,22 +42,24 @@ export const createItem = (req, res) => {
 
 export const updateItem = (req, res) => {
   try {
-    const incomingItem = req.body;
+    const { name, description } = req.body;
     const { id } = req.params;
 
-    if (incomingItem.name && incomingItem.description && !incomingItem.id) {
+    if (name && description) {
       let foundItem = items.find((item) => item.id === id);
 
       if (foundItem) {
-        foundItem.name = incomingItem.name;
-        foundItem.description = incomingItem.description;
+        foundItem.name = name;
+        foundItem.description = description;
 
         res.send(`Item updated successfully`);
       } else {
         res.status(404).send("Wrong ID");
       }
     } else {
-      res.status(400).send("Only name and description parameters are allowed");
+      res
+        .status(400)
+        .send("Missing required fields: name and description are all required");
     }
   } catch (err) {
     console.log(err.message);
