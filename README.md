@@ -2,7 +2,7 @@
 
 ## 📋 Overview
 
-This project is a simple REST API built using Node.js and Express.js. It demonstrates the core CRUD operations—Create, Read, Update, and Delete—on an in-memory data store. It also follows RESTful principles and includes basic middleware and error handling.
+This project is a simple REST API built using Node.js and Express.js. It demonstrates the core CRUD operations (Create, Read, Update, and Delete) using an in-memory data store. It also follows RESTful principles and includes basic middleware and error handling.
 
 ## 🚀 Features
 
@@ -46,6 +46,39 @@ This project is a simple REST API built using Node.js and Express.js. It demonst
    http://localhost:3500
    ```
 
+## 🗂️ In-Memory Data Storage
+
+This project uses a simple in-memory array to store item data instead of a database. The data exists only while the server is running, and will reset once the server is restarted.
+
+Each item in the array has the following structure:
+
+```
+  {
+    id: "unique-id",
+    name: "Item Name",
+    description: "Item Description"
+  }
+```
+
+Sample Structure:
+
+```
+let items = [
+{
+id: "1",
+name: "Book",
+description: "A hardcover notebook"
+},
+{
+id: "2",
+name: "Pen",
+description: "A black ink ballpoint pen"
+}
+];
+```
+
+This approach is suitable for prototyping or learning purposes. For production-level applications, a persistent database (e.g., MongoDB, PostgreSQL) should be used.
+
 ## 🧪 Example Requests (Using Postman)
 
 - **GET all items**
@@ -87,20 +120,120 @@ This project is a simple REST API built using Node.js and Express.js. It demonst
   DELETE http://localhost:3500/items/1
   ```
 
+---
+
+## 🧪 Proof of API Testing
+
+Below are examples of API requests made using Postman, along with corresponding server responses.
+
+### 1. `GET /items`
+
+Retrieves all items (initially empty):
+
+![GET items - empty](images/get-items-empty.png)
+
+**Response (200)**:
+
+```json
+[]
+```
+
+---
+
+### 2. `POST /items`
+
+Creates a new item:
+
+![POST items](images/post-items.png)
+
+**Request Body:**:
+
+```json
+{
+  "name": "Phone",
+  "description": "Android smartphone"
+}
+```
+
+**Response (201):**:
+
+```
+"Item added successfully"
+```
+
+---
+
+### 3. `GET /items/:id (Not Found)`
+
+Requesting a non-existent item:
+
+![GET items/:id](images/get-item-wrong-id.png)
+
+**Response (404):**:
+
+```
+"Item doesn't exist in database."
+```
+
+---
+
+### 4. `PUT /items/:id`
+
+Updates an existing item:
+
+![PUT items/:id](images/update-item.png)
+
+**Request Body:**:
+
+```json
+{
+  "name": "Phone X",
+  "description": "Updated model"
+}
+```
+
+**Response (200):**
+
+```
+"Item updated successfully"
+```
+
+---
+
+### 5. `DELETE /items/:id`
+
+Deletes an item:
+
+![PUT items/:id](images/delete-item.png)
+
+**Response (200):**:
+
+`"Item deleted successfully"`
+
+---
+
 ## 📂 Project Structure
 
 ```
+
 Simple-api-with-expressjs/
 ├── controllers/
-│   └── items.js
+│ └── items.js
+├── middlewares/
+│ └── errorHandler.js
 ├── routers/
-│   └── items.js
+│ └── items.js
 ├── server.js
 ├── package.json
 ├── README.md
+
 ```
 
 ## 📧 Author
 
-**Ibrahim Nurudeen**  
+**Ibrahim Nurudeen**
 GitHub: [techienuru](https://github.com/techienuru)
+
+```
+
+```
