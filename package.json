@@ -5,7 +5,12 @@
   },
   "name": "simple-api-with-expressjs",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple in-memory CRUD API built with Express.js",
+  "keywords": [
+    "express",
+    "rest-api",
+    "crud"
+  ],
   "main": "index.js",
   "type": "module",
   "devDependencies": {
@@ -14,6 +19,6 @@
   "scripts": {
     "start": "nodemon server.js"
   },
-  "author": "",
+  "author": "Ibrahim Nurudeen Shehu <ibrahimnurudeenshehu1447@gmail.com>",
   "license": "ISC"
 }
